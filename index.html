@@ -1,12 +1,328 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Hankook Fashion - JIO</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>Hankook Fashion – Fashion Jewelry</title>
+  <meta name="description" content="Fashion jewelry manufacturing & export – catalog, company profile, buyers introduction" />
+  <meta name="robots" content="index,follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta property="og:title" content="Hankook Fashion – Fashion Jewelry" />
+  <meta property="og:description" content="Fashion jewelry manufacturing & export – catalog, company profile, buyers introduction" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://hankookfashion-jio.kr" />
+  <meta property="og:image" content="https://hankookfashion-jio.kr/images/og-cover.jpg" />
+  <style>
+    /* Light theme (default) with auto dark mode via prefers-color-scheme */
+    :root {
+      --bg:#f7f7f8; --panel:#ffffff; --muted:#6b7280; --text:#0f172a;
+      --brand:#b8860b; --ring:rgba(184,134,11,.25);
+      --maxw:1200px; --radius:18px; --shadow:0 10px 30px rgba(0,0,0,.08);
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans", "Noto Sans KR", sans-serif;
+      background: radial-gradient(1200px 1200px at 10% 0%, #ffffff 0, #fafafa 60%, #f2f4f7 100%);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; height: auto; }
+
+    /* Header */
+    .nav { position: sticky; top: 0; z-index: 50; backdrop-filter: saturate(160%) blur(10px); background: rgba(255,255,255,.75); border-bottom: 1px solid rgba(15,23,42,.08); }
+    .nav-inner { max-width: var(--maxw); margin: 0 auto; padding: 14px 20px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+    .brand { display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:.2px; color:#111827; }
+    .brand .dot { width:12px; height:12px; border-radius:50%; background: linear-gradient(180deg, var(--brand), #c79b2b); box-shadow:0 0 0 6px var(--ring); flex:0 0 12px; }
+
+    .menu { display:flex; gap:18px; align-items:center; }
+    .menu a { opacity:.9; transition:opacity .2s, color .2s; font-weight:500; padding:10px 12px; border-radius:10px; }
+    .menu a:focus-visible { outline:2px solid var(--ring); outline-offset: 2px; }
+    .menu a:hover { opacity:1; color: var(--brand); }
+
+    .hamburger { display:none; width:44px; height:44px; border-radius:12px; border:1px solid rgba(15,23,42,.1); background:#ffffff; color:#111; align-items:center; justify-content:center; }
+    .hamburger span { width:18px; height:2px; background:#111; position:relative; border-radius:2px; }
+    .hamburger span::before, .hamburger span::after { content:""; position:absolute; left:0; right:0; height:2px; background:#111; border-radius:2px; }
+    .hamburger span::before { top:-6px; }
+    .hamburger span::after { top:6px; }
+
+    /* Hero */
+    .hero { position:relative; isolation:isolate; }
+    .hero-inner { max-width: var(--maxw); margin: 0 auto; padding: 72px 20px 56px; display:grid; grid-template-columns:1.1fr .9fr; gap:28px; align-items:center; }
+    .hero h1 { font-size: clamp(28px, 4vw, 46px); line-height:1.1; margin:0 0 14px; color:#0f172a; }
+    .hero p { color: var(--muted); margin:0 0 24px; font-size: clamp(14px, 1.8vw, 18px); }
+    .cta { display:flex; gap:12px; flex-wrap:wrap; }
+    .btn { padding: 14px 18px; border-radius: 999px; border:1px solid rgba(15,23,42,.12); background:#ffffff; color:#111; box-shadow: var(--shadow); transition:transform .2s, box-shadow .2s, border-color .2s; min-height:44px; }
+    .btn:hover { transform: translateY(-1px); border-color: var(--ring); box-shadow:0 12px 24px rgba(184,134,11,.14); }
+    .btn.primary { background: linear-gradient(180deg, var(--brand), #c79b2b); color:#111; border:none; }
+
+    .hero-card { position:relative; border-radius: var(--radius); background: #ffffff; box-shadow: var(--shadow); overflow:hidden; border:1px solid rgba(15,23,42,.08); }
+    .hero-card img { width:100%; aspect-ratio: 4/3; object-fit: cover; }
+    .hero-badges { position:absolute; inset:auto 16px 16px auto; display:flex; gap:8px; }
+    .badge { padding:8px 12px; border-radius:999px; background:rgba(255,255,255,.8); border:1px solid rgba(15,23,42,.12); font-size:12px; color:#334155; }
+
+    /* Sections */
+    section { padding: 56px 20px; }
+    .container { max-width: var(--maxw); margin: 0 auto; }
+    .section-head { display:flex; align-items:end; justify-content:space-between; gap:16px; margin-bottom:20px; }
+    .section-head h2 { margin:0; font-size: clamp(22px, 3.2vw, 30px); color:#0f172a; }
+    .section-head p { margin:0; color:var(--muted); }
+
+    /* About */
+    .about { display:grid; grid-template-columns: .9fr 1.1fr; gap:24px; }
+    .card { background: var(--panel); border:1px solid rgba(15,23,42,.08); border-radius: var(--radius); padding:20px; box-shadow: var(--shadow); }
+    .list { margin:12px 0 0; padding:0; list-style:none; display:grid; gap:6px; color:#334155; }
+
+    /* Gallery */
+    .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:14px; }
+    .item { background: var(--panel); border:1px solid rgba(15,23,42,.08); border-radius: 16px; overflow: hidden; transition:transform .25s, box-shadow .25s; }
+    .item:hover { transform: translateY(-2px); box-shadow:0 24px 40px rgba(0,0,0,.12); }
+    .item img { aspect-ratio:1/1; object-fit:cover; }
+    .item .meta { padding:12px 14px; display:flex; align-items:center; justify-content:space-between; }
+    .meta .name { font-weight:600; color:#0f172a; }
+    .meta .tag { font-size:12px; color:var(--muted); border:1px solid rgba(15,23,42,.12); padding:4px 8px; border-radius:999px; }
+
+    /* Buyers */
+    .buyers { display:grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap:14px; align-items:center; }
+    .buyers .logo { background: var(--panel); border:1px solid rgba(15,23,42,.08); border-radius:14px; padding:18px; height:72px; display:flex; align-items:center; justify-content:center; opacity:.95; filter:grayscale(0%); }
+
+    /* Contact */
+    .contact { display:grid; grid-template-columns: 1fr 1fr; gap:20px; }
+    .contact a.link { color: var(--brand); }
+
+    /* Footer */
+    footer { padding: 32px 20px; color:#334155; border-top:1px solid rgba(15,23,42,.08); background: #ffffff; }
+    .foot-inner { max-width: var(--maxw); margin:0 auto; display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between; }
+
+    /* Motion accessibility */
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+    /* Responsive */
+    @media (max-width: 980px) {
+      .hero-inner { grid-template-columns:1fr; padding-top: 56px; }
+      .about { grid-template-columns: 1fr; }
+      .contact { grid-template-columns: 1fr; }
+      .hamburger { display:flex; }
+      .menu { display:none; position:absolute; top:56px; right:20px; flex-direction:column; background:#ffffff; border:1px solid rgba(15,23,42,.08); border-radius:14px; padding:10px; box-shadow: var(--shadow); }
+      .menu.open { display:flex; }
+      .menu a { padding:10px 14px; }
+    }
+    @media (max-width: 640px) {
+      .section-head { flex-direction:column; align-items:flex-start; gap:6px; }
+    }
+  </style>
 </head>
 <body>
-  <h1>Welcome to Hankook Fashion - JIO</h1>
-  <p>패션 주얼리 카탈로그와 회사 소개 페이지입니다.</p>
-  <img src="images/er-001.jpg" alt="Sample Earrings" width="300">
+  <header class="nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a class="brand" href="#">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Hankook Fashion</span>
+      </a>
+      <button class="hamburger" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mainMenu"><span></span></button>
+      <nav class="menu" id="mainMenu">
+        <a href="#about">About</a>
+        <a href="#catalog">Catalog</a>
+        <a href="#buyers">Buyers</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <h1>Fashion Jewelry Manufacturing & Export<br/>Hankook Fashion</h1>
+        <p>Necklaces · Earrings · Bracelets · Keyrings and more. 
+          OEM/ODM development, sampling, plating, QC, and global shipping with one‑stop service.</p>
+        <div class="cta">
+          <a class="btn primary" href="#catalog">View Catalog</a>
+          <a class="btn" href="#contact">Contact Us</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <img src="images/hero-cover.jpg" alt="Hankook Fashion Jewelry Showcase" loading="lazy" />
+        <div class="hero-badges">
+          <span class="badge">OEM / ODM</span>
+          <span class="badge">Eco Materials</span>
+          <span class="badge">Global QC</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <div class="section-head">
+        <h2>About Us</h2>
+        <p>Company Profile</p>
+      </div>
+      <div class="about">
+        <div class="card">
+          <h3 style="margin-top:0">How We Work</h3>
+          <ul class="list">
+            <li><b>Design proposals & samples</b> tailored to buyer concepts</li>
+            <li><b>In‑house process</b>: casting, plating (gold/silver/two‑tone), epoxy, UV printing</li>
+            <li>Compliant with <b>RS / Higg FEM / SLCP</b> and retailer requirements</li>
+            <li>Export experience to major US retailers – TJX, Claire’s, Dillard’s</li>
+            <li>Eco‑friendly materials available (recycled acrylic, sea glass, etc.)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0">Key Information</h3>
+          <ul class="list">
+            <li>Company: <b>Hankook Fashion – JIO</b></li>
+            <li>Business: Fashion jewelry design, manufacturing, export</li>
+            <li>Capabilities: Sample team · QC team · Plating/printing lines</li>
+            <li>Lead time: Flexible to buyer schedules</li>
+            <li>MOQ: Negotiable depending on item/materials</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="catalog">
+    <div class="container">
+      <div class="section-head">
+        <h2>Product Catalog</h2>
+        <p>Collections</p>
+      </div>
+      <div class="grid" role="list">
+        <article class="item" role="listitem">
+          <img src="images/necklace-01.jpg" alt="Gold scroll pendant necklace" loading="lazy" />
+          <div class="meta">
+            <span class="name">Scroll Pendant</span>
+            <span class="tag">Necklace</span>
+          </div>
+        </article>
+        <article class="item" role="listitem">
+          <img src="images/earrings-01.jpg" alt="Two‑tone post hoop earrings" loading="lazy" />
+          <div class="meta">
+            <span class="name">Two‑Tone Hoop</span>
+            <span class="tag">Earrings</span>
+          </div>
+        </article>
+        <article class="item" role="listitem">
+          <img src="images/bracelet-01.jpg" alt="T‑bar O‑ring bracelet" loading="lazy" />
+          <div class="meta">
+            <span class="name">T‑bar Bracelet</span>
+            <span class="tag">Bracelet</span>
+          </div>
+        </article>
+        <article class="item" role="listitem">
+          <img src="images/keyring-01.jpg" alt="Travel theme charm keyring" loading="lazy" />
+          <div class="meta">
+            <span class="name">Travel Charm</span>
+            <span class="tag">Keyring</span>
+          </div>
+        </article>
+        <article class="item" role="listitem">
+          <img src="images/seaglass-01.jpg" alt="Sea glass inlay pendant" loading="lazy" />
+          <div class="meta">
+            <span class="name">Sea Glass Inlay</span>
+            <span class="tag">Pendant</span>
+          </div>
+        </article>
+        <article class="item" role="listitem">
+          <img src="images/abalone-01.jpg" alt="Abalone shell pendant" loading="lazy" />
+          <div class="meta">
+            <span class="name">Abalone Shell</span>
+            <span class="tag">Pendant</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="buyers">
+    <div class="container">
+      <div class="section-head">
+        <h2>Key Buyers</h2>
+        <p>Partners</p>
+      </div>
+      <div class="buyers">
+        <div class="logo">TJX</div>
+        <div class="logo">Claire’s</div>
+        <div class="logo">Dillard’s</div>
+        <div class="logo">Target</div>
+        <div class="logo">Boutiques</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="section-head">
+        <h2>Contact</h2>
+        <p>Get in touch</p>
+      </div>
+      <div class="contact">
+        <div class="card">
+          <h3 style="margin-top:0">Buyer Inquiries</h3>
+          <p>For development, quotation, and lead time inquiries, please contact us by email.</p>
+          <p><b>Email</b> · <a class="link" href="mailto:info@hankookfashion-jio.kr">info@hankookfashion-jio.kr</a></p>
+          <p><b>Website</b> · <a class="link" href="https://hankookfashion-jio.kr">hankookfashion-jio.kr</a></p>
+        </div>
+        <div class="card">
+          <h3 style="margin-top:0">Capabilities</h3>
+          <ul class="list">
+            <li>Casting · Plating (gold/silver/antique) · UV printing · Epoxy</li>
+            <li>Recycled materials (PMMA, Sea Glass) available</li>
+            <li>Packaging · Barcode · QC · Global shipping documents</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot-inner">
+      <div>© <span id="year"></span> Hankook Fashion – JIO. All rights reserved.</div>
+      <div style="opacity:.8">Made for GitHub Pages • Cloudflare</div>
+    </div>
+  </footer>
+
+  <script>
+    // Current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    const toggle = document.getElementById('menuToggle');
+    const menu = document.getElementById('mainMenu');
+    toggle?.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+
+    // Close menu on link click (mobile UX)
+    menu?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      menu.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }));
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Hankook Fashion – JIO",
+    "url": "https://hankookfashion-jio.kr",
+    "description": "Fashion jewelry manufacturing & export – catalog, company profile, buyers introduction",
+    "logo": "https://hankookfashion-jio.kr/images/logo.png",
+    "sameAs": [],
+    "contactPoint": [{
+      "@type": "ContactPoint",
+      "contactType": "sales",
+      "email": "info@hankookfashion-jio.kr",
+      "areaServed": "US, EU, APAC",
+      "availableLanguage": ["en"]
+    }]
+  }
+  </script>
 </body>
 </html>
